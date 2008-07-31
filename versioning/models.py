@@ -17,7 +17,3 @@ class Revision(models.Model):
     created_at = models.DateTimeField(default=datetime.now)
     
     objects = RevisionManager()
-    
-    class Admin:
-        list_display = ("content_type", "object_pk", "created_at")
-        list_filter = ("created_at", "content_type",)
