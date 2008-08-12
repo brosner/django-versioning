@@ -20,8 +20,8 @@ def pre_save(instance, **kwargs):
     for field in fields:
         original_data = getattr(original, field)
         new_data = getattr(instance, field)
-        data_diff = unified_diff(original_data.split("\n"),
-                                 new_data.split("\n"), context=3)
+        data_diff = unified_diff(original_data.splitlines(),
+                                 new_data.splitlines(), context=3)
         diff.extend(["--- %s.%s" % (model.__name__, field),
                      "+++ %s.%s" % (model.__name__, field)])
         for line in data_diff:
