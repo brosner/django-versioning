@@ -25,7 +25,7 @@ class RevisionInline(generic.GenericTabularInline):
         if db_field.name == "delta":
             kwargs["widget"] = DeltaWidget
             return db_field.formfield(**kwargs)
-        super(RevisionInline, self).formfield_for_dbfield(db_field, **kwargs)
+        return super(RevisionInline, self).formfield_for_dbfield(db_field, **kwargs)
 
 class RevisionAdmin(admin.ModelAdmin):
     list_display = ("sha1", "content_type", "object_pk", "created_at")
@@ -35,6 +35,6 @@ class RevisionAdmin(admin.ModelAdmin):
         if db_field.name == "delta":
             kwargs["widget"] = DeltaWidget
             return db_field.formfield(**kwargs)
-        super(RevisionAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        return super(RevisionAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
 admin.site.register(Revision, RevisionAdmin)
