@@ -16,6 +16,7 @@ class Revision(models.Model):
     content_type = models.ForeignKey(ContentType)
     content_object = generic.GenericForeignKey("object_pk", "content_type")
     created_at = models.DateTimeField(default=datetime.now)
+    delta = models.TextField()
     
     objects = RevisionManager()
     
