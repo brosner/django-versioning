@@ -30,5 +30,11 @@ class RevisionInline(generic.GenericTabularInline):
 class RevisionAdmin(admin.ModelAdmin):
     list_display = ("sha1", "content_type", "object_pk", "created_at")
     list_filter = ("created_at", "content_type",)
+    
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == "delta":
+            kwargs["widget"] = DeltaWidget
+            return db_field.formfield(**kwargs)
+        super(RevisionAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
 admin.site.register(Revision, RevisionAdmin)
