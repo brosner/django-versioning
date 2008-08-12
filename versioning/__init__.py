@@ -1,4 +1,6 @@
 
+from versioning.utils import revisions_for_object
+
 registry = []
 
 class AlreadyRegistered(Exception):
